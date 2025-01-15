@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول امتحانات الفصل الأول</title>
+    <style>
+        /* إعدادات عامة */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #333;
+            background: linear-gradient(-45deg, #004080, #0084ff, #00334d, #80dfff);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* التاريخ والساعة */
+        .datetime {
+            position: fixed;
+            top: 10px;
+            font-size: 30px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .date {
+            left: 20px;
+        }
+
+        .clock {
+            right: 20px;
+        }
+
+        /* الرأس والشعار */
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+        }
+
+        header img {
+            width: 120px;
+        }
+
+        header h1 {
+            margin: 10px 0 0;
+            font-size: 28px;
+        }
+
+        /* جدول الامتحانات */
+        .content {
+            margin-top: 30px;
+        }
+
+        .exam-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .exam-table th, .exam-table td {
+            border: 2px solid #004080;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #004080;
+        }
+
+        .exam-table th {
+            background-color: #004080;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown {
+            font-size: 28px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* النصوص التشجيعية */
+        #dynamic-text {
+            position: fixed;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #004080;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        /* شريط التمرير */
+        .marquee {
+            background-color: #004080;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            bottom: 50px;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .marquee p {
+            display: inline-block;
+            animation: scroll-left 15s linear infinite; /* تقليل السرعة */
+            margin: 0;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* تحسين التجاوب */
+        @media (max-width: 768px) {
+            .datetime {
+                font-size: 18px;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            .exam-table th, .exam-table td {
+                font-size: 18px;
+                padding: 10px;
+            }
+
+            .content {
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .marquee {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- التاريخ والساعة -->
+    <div class="datetime date" id="date"></div>
+    <div class="datetime clock" id="clock"></div>
+
+    <!-- الرأس -->
+    <header>
+        <img src="https://e.top4top.io/p_3302it4a31.jpg" alt="شعار المدرسة">
+        <h1>جدول امتحانات الفصل الدراسي الأول 2024/2025</h1>
+    </header>
+
+    <!-- المحتوى -->
+    <div class="content">
+        <table class="exam-table">
+            <thead>
+                <tr>
+                    <th>الصف</th>
+                    <th>المادة</th>
+                    <th>الوقت</th>
+                    <th>المدة</th>
+                    <th>العد التنازلي</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الصفوف الخامس إلى الثامن</td>
+                    <td>التربية الإسلامية</td>
+                    <td>8:00 ص - 10:00 ص</td>
+                    <td>ساعتان</td>
+                    <td class="countdown" id="countdown1">سيبدأ العد التنازلي عند بدء الاختبار</td>
+                </tr>
+                <tr>
+                    <td>الصف التاسع</td>
+                    <td>اللغة العربية</td>
+                    <td>8:00 ص - 10:00 ص</td>
+                    <td>ساعتان</td>
+                    <td class="countdown" id="countdown2">سيبدأ العد التنازلي عند بدء الاختبار</td>
+                </tr>
+                <tr>
+                    <td>الصف العاشر</td>
+                    <td>اللغة العربية</td>
+                    <td>8:00 ص - 11:00 ص</td>
+                    <td>ثلاث ساعات</td>
+                    <td class="countdown" id="countdown3">سيبدأ العد التنازلي عند بدء الاختبار</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- النصوص التشجيعية -->
+    <div id="dynamic-text">بالتوفيق في امتحاناتكم!</div>
+
+    <!-- شريط التمرير -->
+    <div class="marquee">
+        <p>✨ تأكد من إحضار أدواتك كاملة | احرص على قراءة التعليمات بعناية | الهدوء مفتاح النجاح | بالتوفيق لجميع الطلاب! ✨</p>
+    </div>
+
+    <script>
+        // تحديث التاريخ
+        function updateDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date").textContent = `📅 اليوم: ${now.toLocaleDateString('ar-EG', options)}`;
+        }
+        updateDate();
+
+        // تحديث الساعة الرقمية
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12 || 12;
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = now.getHours() >= 12 ? 'م' : 'ص';
+            document.getElementById("clock").textContent = `⌚ الساعة: ${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // عد تنازلي
+        function startCountdownWithEffect(elementId, endTime) {
+            const countdownElement = document.getElementById(elementId);
+
+            function updateCountdown() {
+                const now = new Date();
+                const distance = endTime - now;
+
+                if (distance < 0) {
+                    countdownElement.textContent = "انتهى الامتحان";
+                    countdownElement.classList.remove("start");
+                    clearInterval(interval);
+                    return;
+                }
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+            }
+
+            countdownElement.classList.add("start");
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        // تواريخ وأوقات الامتحانات
+        const examStartTimes = [
+            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0),
+            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0),
+            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0)
+        ];
+
+        // بدء العد التنازلي عند وقت الامتحان
+        setTimeout(() => {
+            startCountdownWithEffect("countdown1", examStartTimes[0]);
+            startCountdownWithEffect("countdown2", examStartTimes[1]);
+            startCountdownWithEffect("countdown3", examStartTimes[2]);
+        }, new Date(examStartTimes[0]) - new Date());
+
+        // نصوص تشجيعية ديناميكية
+        const messages = [
+            "✨ ركز جيدًا لتحقيق النجاح!",
+            "🌟 بالتوفيق لجميع الطلاب!",
+            "📖 استعد لأداء أفضل ما لديك!",
+            "💪 الهدوء مفتاح التفوق!"
+        ];
+
+        let messageIndex = 0;
+
+        function showDynamicText() {
+            const dynamicText = document.getElementById("dynamic-text");
+            dynamicText.textContent = messages[messageIndex];
+            dynamicText.style.display = "block";
+            messageIndex = (messageIndex + 1) % messages.length;
+
+            setTimeout(() => {
+                dynamicText.style.display = "none";
+            }, 5000);
+        }
+
+        setInterval(showDynamicText, 10000);
+        showDynamicText();
+    </script>
+</body>
+</html>
