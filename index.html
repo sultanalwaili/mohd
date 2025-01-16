@@ -244,7 +244,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // عد تنازلي
+        // عد تنازلي لنهاية الامتحان
         function startCountdownWithEffect(elementId, endTime) {
             const countdownElement = document.getElementById(elementId);
 
@@ -263,24 +263,24 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                countdownElement.textContent = `${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+                countdownElement.textContent = `المتبقي: ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
             }
 
             const interval = setInterval(updateCountdown, 1000);
             updateCountdown();
         }
 
-        // تواريخ وأوقات الامتحانات
-        const examStartTimes = [
-            new Date(new Date().setHours(8, 0, 0, 0)),
-            new Date(new Date().setHours(8, 0, 0, 0)),
-            new Date(new Date().setHours(8, 0, 0, 0))
+        // تواريخ وأوقات نهاية الامتحانات
+        const examEndTimes = [
+            new Date(new Date().setHours(10, 0, 0, 0)), // نهاية امتحان الصفوف الخامس إلى الثامن
+            new Date(new Date().setHours(10, 0, 0, 0)), // نهاية امتحان الصف التاسع
+            new Date(new Date().setHours(11, 0, 0, 0))  // نهاية امتحان الصف العاشر
         ];
 
         // بدء العد التنازلي
-        startCountdownWithEffect("countdown1", examStartTimes[0]);
-        startCountdownWithEffect("countdown2", examStartTimes[1]);
-        startCountdownWithEffect("countdown3", examStartTimes[2]);
+        startCountdownWithEffect("countdown1", examEndTimes[0]);
+        startCountdownWithEffect("countdown2", examEndTimes[1]);
+        startCountdownWithEffect("countdown3", examEndTimes[2]);
 
         // نصوص تشجيعية ديناميكية
         const messages = [
