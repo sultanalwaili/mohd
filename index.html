@@ -50,6 +50,14 @@
 
         header img {
             width: 120px;
+            border: 5px solid white;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
         }
 
         header h1 {
@@ -123,7 +131,7 @@
 
         .marquee p {
             display: inline-block;
-            animation: scroll-left 15s linear infinite; /* تقليل السرعة */
+            animation: scroll-left 15s linear infinite;
             margin: 0;
         }
 
@@ -246,7 +254,7 @@
 
                 if (distance < 0) {
                     countdownElement.textContent = "انتهى الامتحان";
-                    countdownElement.classList.remove("start");
+                    countdownElement.style.color = "red";
                     clearInterval(interval);
                     return;
                 }
@@ -258,24 +266,21 @@
                 countdownElement.textContent = `${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
             }
 
-            countdownElement.classList.add("start");
             const interval = setInterval(updateCountdown, 1000);
             updateCountdown();
         }
 
         // تواريخ وأوقات الامتحانات
         const examStartTimes = [
-            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0),
-            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0),
-            new Date(new Date().setDate(new Date().getDate() + 1)).setHours(8, 0, 0)
+            new Date(new Date().setHours(8, 0, 0, 0)),
+            new Date(new Date().setHours(8, 0, 0, 0)),
+            new Date(new Date().setHours(8, 0, 0, 0))
         ];
 
-        // بدء العد التنازلي عند وقت الامتحان
-        setTimeout(() => {
-            startCountdownWithEffect("countdown1", examStartTimes[0]);
-            startCountdownWithEffect("countdown2", examStartTimes[1]);
-            startCountdownWithEffect("countdown3", examStartTimes[2]);
-        }, new Date(examStartTimes[0]) - new Date());
+        // بدء العد التنازلي
+        startCountdownWithEffect("countdown1", examStartTimes[0]);
+        startCountdownWithEffect("countdown2", examStartTimes[1]);
+        startCountdownWithEffect("countdown3", examStartTimes[2]);
 
         // نصوص تشجيعية ديناميكية
         const messages = [
