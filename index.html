@@ -51,8 +51,15 @@
 
         header img {
             width: 80px;
-            border: 3px solid white;
-            border-radius: 10px;
+            border-radius: 50%; /* جعل الشعار دائريًا */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            animation: pulse 2s infinite; /* إضافة تأثير النبض */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         header h1 {
@@ -94,6 +101,12 @@
             max-width: 1100px;
             background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .exam-table th, .exam-table td {
@@ -115,10 +128,28 @@
             font-weight: bold;
         }
 
-      /* العبارات التحفيزية */
+        /* شريط التقدم */
+        .progress-container {
+            width: 90%;
+            margin: 20px auto;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #004080;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* العبارات التحفيزية */
         #dynamic-message {
             position: fixed;
-            bottom: 100px; /* تحريك العبارة أعلى بقليل من شريط التمرير */
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             background: #004080;
@@ -129,6 +160,13 @@
             font-weight: bold;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             display: none;
+            animation: fadeInOut 3s linear infinite;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
 
         /* شريط التمرير */
@@ -190,7 +228,7 @@
     <!-- الرأس -->
     <header>
         <img src="https://e.top4top.io/p_3302it4a31.jpg" alt="شعار المدرسة">
-        <h1>جدول امتحانات الفصل الدراسي الأول - يوم الأحد 13/1</h1>
+        <h1>جدول امتحانات الفصل الدراسي الأول - يوم الأحد 19 يناير</h1>
     </header>
 
     <!-- أزرار الفترات -->
@@ -271,6 +309,11 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
     </div>
 
     <!-- العبارات التحفيزية -->
@@ -396,6 +439,20 @@
 
             messageIndex = (messageIndex + 1) % motivationalMessages.length;
         }
+
+        setInterval(showDynamicMessage, 10000);
+
+        // شريط التقدم
+        const progressBar = document.getElementById("progress-bar");
+        let progress = 0;
+
+        setInterval(() => {
+            progress = (progress + 1) % 100;
+            progressBar.style.width = `${progress}%`;
+        }, 100);
+    </script>
+</body>
+</html>
 
         setInterval(showDynamicMessage, 10000);
     </script>
