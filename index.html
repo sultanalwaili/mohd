@@ -147,53 +147,36 @@
         }
 
         /* العبارات التحفيزية */
-        #dynamic-message {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #004080;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            display: none;
-            animation: fadeInOut 3s linear infinite;
-        }
+      #dynamic-message {
+    position: fixed;
+    bottom: 120px; /* زيادة المسافة من الأسفل */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #004080;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    display: none;
+    animation: fadeInOut 3s linear infinite;
+    z-index: 20; /* زيادة z-index */
+}
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* شريط التمرير */
-        .marquee {
-            background-color: #004080;
-            color: white;
-            overflow: hidden;
-            white-space: nowrap;
-            position: fixed;
-            bottom: 50px;
-            width: 100%;
-            padding: 10px 0;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .marquee p {
-            display: inline-block;
-            animation: scroll-left 15s linear infinite;
-            margin: 0;
-        }
-
-        @keyframes scroll-left {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
+.marquee {
+    background-color: #004080;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 10; /* التأكد من أن z-index أقل */
+}
         /* تحسين التجاوب */
         @media (max-width: 768px) {
             .datetime {
